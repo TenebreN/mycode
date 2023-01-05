@@ -7,9 +7,12 @@ import time
 # choices need to be evaluated
 # print out the result (who won)
 
+
+print("Welcome to the game!")
+
 def main():
     """body of the game"""
-    print("Welcome to the game!")
+
     time.sleep(1)
     choice= input("Make a choice: Rock, Paper, or Scissors?\n>")
     time.sleep(1)
@@ -58,8 +61,8 @@ def main():
     
     again= again.lower()
     if again not in ["n", "y"]:
-        print ("invalid choice, choose again!")
-    again= input("Play again? Y/N: \n>")
+        print ("invalid choice, quitting!")
+    
     again= again.lower()
     if again == "y":
         main()
