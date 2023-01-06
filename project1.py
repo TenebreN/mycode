@@ -7,7 +7,7 @@ Rio= 0
 Montgomery= 0
 Compton= 0
 
-question1= {
+question1= {#adding dictionaries to build lists
         "question" : "What's your jam?",
         "A. Hips Don't Lie" : "Rio",
         "B. Sweet Home Alabama" : "Montgomery",
@@ -28,14 +28,16 @@ question3= {
         "C. Tacos and Burritos": "Compton"
         }
 
+#below turns the dictionaies into lists, allowing me to use positions as keys/values
 question1_list= list(question1.keys())
 question2_list= list(question2.keys())
 question3_list= list(question3.keys())
 print("Which city should you live in?  Find out by answering three simple questions!")
 
-time.sleep(2)
+time.sleep(2)#adding time to have the prompts more user friendly
 
 def main():
+    #added the below for counters to keep track of points
     Rio= 0
     Montgomery= 0
     Compton= 0
@@ -46,7 +48,7 @@ def main():
     print(question1_list[2])
     print(question1_list[3])
     q1answer= input("Please choose either A, B, or C >")
-    q1answer= q1answer.upper()
+    q1answer= q1answer.upper()#changed answer into Uppercase (potentially user put it in lower case and it didnt work)
     if q1answer == "A":
         Rio += 1
     elif q1answer == "B":
@@ -103,11 +105,17 @@ def main():
     print("Just a moment longer!")
     time.sleep(1)
 
-    if Rio > Montgomery and Rio > Compton:
+    if Rio == Montgomery or Rio == Compton or Compton == Montgomery or Compton == Rio or Montgomery == Compton or Montgomery == Rio:
+        print("You have a tie! You should travel! ")
+    
+    elif Rio > Montgomery and Rio > Compton:
         print("You should live in Rio!")
+    
     elif Montgomery > Rio and Montgomery > Compton:
         print("You should live in Montgomery!")
+    
     elif Compton > Montgomery and Compton > Rio:
         print("You should live in Compton!")
+    
+        
 main()
-
