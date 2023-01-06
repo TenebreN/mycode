@@ -47,20 +47,27 @@ def main():
     print(question1_list[1])
     print(question1_list[2])
     print(question1_list[3])
-    q1answer= input("Please choose either A, B, or C >")
-    q1answer= q1answer.upper()#changed answer into Uppercase (potentially user put it in lower case and it didnt work)
-    if q1answer == "A":
-        Rio += 1
-    elif q1answer == "B":
-        Montgomery += 1
-    elif q1answer == "C":
-        Compton += 1
-
-
-
-
-    print(f"You chose {q1answer}, good choice!")
-    
+    while True:
+        try:
+            q1answer= input("Please choose either A, B, or C >")
+            q1answer= q1answer.upper()#changed answer into Uppercase (potentially user put it in lower case and it didnt work)
+            if q1answer not in ["A", "B" , "C"]: 
+                print("please make a valid choice between A, B, or C")
+                continue
+            elif q1answer == "A":
+                Rio += 1
+            elif q1answer == "B":
+                Montgomery += 1
+            elif q1answer == "C":
+                Compton += 1
+            
+            print(f"You chose {q1answer}, good choice!")
+            
+            break
+        except: 
+            print("Oopsie")
+            
+                
 
     print("Next question in 2 seconds!")
     time.sleep(2)
@@ -70,15 +77,23 @@ def main():
     print(question2_list[1])
     print(question2_list[2])
     print(question2_list[3])
-    q2answer= input("Please choose either A, B, or C >")
-    q2answer= q2answer.upper()
-    if q1answer == "A":
-        Montgomery += 1
-    elif q1answer == "B":
-        Compton += 1
-    elif q1answer == "C":
-        Rio += 1 
-    print(f"You chose {q2answer}, good choice!")
+    while True:
+        try: 
+            q2answer= input("Please choose either A, B, or C >")
+            q2answer= q2answer.upper()
+            if q2answer not in ["A", "B" , "C"]: 
+                print("please make a valid choice between A, B, or C")
+                continue
+            elif q2answer == "A":
+                Montgomery += 1
+            elif q2answer == "B":
+                Compton += 1
+            elif q2answer == "C":
+                Rio += 1 
+            print(f"You chose {q2answer}, good choice!")
+            break
+        except: 
+            print("Oopsie")
 
 
     print("Next question in 2 seconds!")
@@ -89,16 +104,23 @@ def main():
     print(question3_list[1])
     print(question3_list[2])
     print(question3_list[3])
-    q3answer= input("Please choose either A, B, or C >")
-    q3answer= q3answer.upper()
-    if q1answer == "A":
-        Rio += 1
-    elif q1answer == "B":
-        Montgomery += 1
-    elif q1answer == "C":
-        Compton += 1    
-    print(f"You chose {q3answer}, good choice!")
-    
+    while True:
+        try:
+            q3answer= input("Please choose either A, B, or C >")
+            q3answer= q3answer.upper()
+            if q3answer not in ["A", "B" , "C"]: 
+                print("please make a valid choice between A, B, or C")
+                continue
+            elif q3answer == "A":
+                Rio += 1
+            elif q3answer == "B":
+                Montgomery += 1
+            elif q3answer == "C":
+                Compton += 1    
+            print(f"You chose {q3answer}, good choice!")
+            break
+        except:
+            print("oopsie")
     
     print("Calculating results!  Please wait!")
     time.sleep(2)
