@@ -8,10 +8,14 @@ add = str("git add *")
 commit= str('git commit -m "latest update"')
 push = str("git push origin HEAD")
 
-os.system(f"{add}")
-time.sleep(1)
-os.system(f"{commit}")
-time.sleep(1)
-os.system(f"{push}")
+def main(): 
+    os.system("cd ~/mycode")
 
+    os.system(f"{add}")
+    time.sleep(1)
+    os.system(f"{commit}")
+    time.sleep(1)
+    os.system(f"{push}")
+    
+main()
 print("Success!")
