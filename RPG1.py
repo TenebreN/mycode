@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-"""Driving a simple game framework with
-   a dictionary object | Alta3 Research"""
+"""Role Playing | VArmstrong"""
+
+import time
 
 def showInstructions():
     """Show the game instructions when called"""
@@ -42,16 +43,48 @@ rooms =  {
                   'north' : 'dark woods' ,
                   'description' : 'You are standing in a small clearing of trees.  The open air allows you to catch your breath.  You see woods to the north, and a small shack to the west. The other ways are blocked.' , 
 
-                }
+                },
         }    
+
+items = {
+            
+            'map' : {
+                'description' : 'this map is blank, like your mind when trying to remember commands',
+                },
+
+            'sword' : {
+                'description' : 'the sword is razor sharp, like the margin you had passing previous certification tests',
+                },
+            
+            'paper' : {
+                 'description' : 'on the paper is printed: "go west young man!"'
+                },
+        }
 # start the player in the Hall
 currentRoom = 'dark woods'
+itemlist = ''
 showInstructions()
+playername= input("Welcome to XXXXXX!  A game in which you are the guinea pig at the mercy of my very questionable python skills! \n \nPlease enter your name: \n")
 
+print(f"You awaken with a start, in an unfamiliar land wearing dirty leather clothing.  You have a splitting headache.  Your last memory was sitting at your computer,  playing a drinking game with your python instructors Chad and Paul.  Every time you made a mistake in your python coding, you had to take a drink.  Double if you were caught hardcoding.  Obviously, you drank too much...")
+
+time.sleep(0)
+
+print(f'''
+    ...your only hope now is to somehow escape from this strange dimension and get out of your infinite loop.
+    
+
+    good luck, {playername}
+    ''')
 # breaking this while loop means the game is over
+
+time.sleep(0)
+
+
+
 while True:
     showStatus()
-
+    
     # the player MUST type something in
     # otherwise input will keep asking
     move = ''
@@ -90,4 +123,25 @@ while True:
         else:
             #tell them they can't get it
             print('Can\'t get ' + move[1] + '!')
+    elif move[0] == 'look':
+        if move[1] == "map":
+            print(items['map']['description'])
+        elif move[1] == "paper":
+            print(items['paper']['description'])
+        elif move[1] == "sword":
+            print(items['sword']['description'])
+        
+        else:
+            print('sorry')
+        
 
+        
+           
+            
+            
+            #delete the item key:value pair from the room's dictionary
+            
+        # if there's no item in the room or the item doesn't match
+    
+            #tell them they can't get it
+        
