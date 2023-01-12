@@ -12,6 +12,7 @@ def showInstructions():
     Commands:
       go [direction]
       get [item]
+      look [item]
     ''')
 
 def showStatus():
@@ -41,10 +42,35 @@ rooms =  {
 
             'small clearing' : {
                   'north' : 'dark woods' ,
-                  'description' : 'You are standing in a small clearing of trees.  The open air allows you to catch your breath.  You see woods to the north, and a small shack to the west. The other ways are blocked.' , 
+                  'west' : 'house courtyard' ,
+                  'description' : 'You are standing in a small clearing of trees.  The open air allows you to catch your breath.  You see woods to the north, and a small house to the west. The other ways are blocked.' , 
 
                 },
-        }    
+            'house courtyard' : {
+                'east' : 'small clearing',
+                'west' : 'house' ,
+                'description' : 'You are in the courtyard of a decrepit house.  Broken bottles, like your programming hopes and dreams, lay strewn about and discarded.  Further west is the shack entrance. The small clearing is behind you, and the other ways are blocked.',
+                
+                },
+            'house' : {
+                'up' : 'second floor',
+                'east' : 'house courtyard',
+                'description' : 'You are inside the decrepit house. It smells musty and rotten.  Discarded programming manuals sit on a broken table.  Going (up) you see a staircase.' ,
+                'item' : 'programming manuals' ,
+           },
+            'second floor' : {
+                'down' : 'house',
+                'in' : 'master bedroom' , 
+                'description' : 'dark and scary',
+
+                
+            },
+            'master bedroom' : {
+                'out' : 'second floor',
+                'description' : 'this is where the paper is' , 
+                'item' : 'paper'
+            },
+        }
 
 items = {
             
@@ -57,8 +83,11 @@ items = {
                 },
             
             'paper' : {
-                 'description' : 'on the paper is printed: "go west young man!"'
+                 'description' : 'on the paper is printed: "practice is the key!"'
                 },
+            'programming manuals' : {
+                'description' : 'the manuals are dusty but unused.  Why didn\'t the previous owner practice?',
+            } 
         }
 # start the player in the Hall
 currentRoom = 'dark woods'
