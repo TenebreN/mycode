@@ -55,19 +55,20 @@ rooms =  {
             'house' : {
                 'up' : 'second floor',
                 'east' : 'house courtyard',
-                'description' : 'You are inside the decrepit house. It smells musty and rotten.  Discarded programming manuals sit on a broken table.  Going (up) you see a staircase.' ,
-                'item' : 'programming manuals' ,
+                'description' : 'You are inside the decrepit house. It smells musty and rotten.  Discarded many old books sit on a broken table.  Going (up) you see a staircase.' ,
+                'item' : 'programming manual' ,
            },
             'second floor' : {
                 'down' : 'house',
                 'in' : 'master bedroom' , 
-                'description' : 'dark and scary',
+                'description' : 'at the top of the staircase you emerge into a hall. The entire area smells like piss and bad decisions.  There is a single closed door at the end of the hall.  Go [in] or go [down]?',
 
                 
             },
             'master bedroom' : {
                 'out' : 'second floor',
-                'description' : 'this is where the paper is' , 
+                'description' : 'you have entered the master bedroom.  The smell of decay immediately hits your nostrils.  As your eyes adjust to the dark, you are shocked to see a lifeless body on the center of the bed.  You see a nametag and title pinned to the corpse\'s body.  It reads "Smith - TLG Learning Student".  In the corpse\'s hand is a piece of [paper]' , 
+
                 'item' : 'paper'
             },
         }
@@ -83,11 +84,16 @@ items = {
                 },
             
             'paper' : {
-                 'description' : 'on the paper is printed: "practice is the key!"'
+                 'description' : '''on the paper is printed: 
+                 
+                 I should have studied!
+
+                 practice is the key!'''
                 },
-            'programming manuals' : {
-                'description' : 'the manuals are dusty but unused.  Why didn\'t the previous owner practice?',
-            } 
+            
+            'programming manual' : {
+                'description' : 'the manual is dusty but unused.  Why didn\'t the previous owner practice?',
+            }, 
         }
 # start the player in the Hall
 currentRoom = 'dark woods'
@@ -159,8 +165,11 @@ while True:
             print(items['paper']['description'])
         elif move[1] == "sword":
             print(items['sword']['description'])
+        elif move[1] == 'programming manual':
+            print(items['programming manual']['description'])
+        time.sleep(5)
         
-        else:
+    else:
             print('sorry')
         
 
