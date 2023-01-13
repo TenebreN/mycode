@@ -13,6 +13,7 @@ def showInstructions():
       go [direction]
       get [item]
       look [item]
+      quit
     ''')
 
 def showStatus():
@@ -27,6 +28,9 @@ def showStatus():
       print('You see a ' + rooms[currentRoom]['item'])
     print("---------------------------")
 
+def quitgame():
+    print("thank you for playing! (quitter!)")
+    exit()
 
 # an inventory, which is initially empty
 inventory = []
@@ -103,7 +107,7 @@ playername= input("Welcome to XXXXXX!  A game in which you are the guinea pig at
 
 print(f"You awaken with a start, in an unfamiliar land wearing dirty leather clothing.  You have a splitting headache.  Your last memory was sitting at your computer,  playing a drinking game with your python instructors Chad and Paul.  Every time you made a mistake in your python coding, you had to take a drink.  Double if you were caught hardcoding.  Obviously, you drank too much...")
 
-time.sleep(0)
+time.sleep(2)
 
 print(f'''
     ...your only hope now is to somehow escape from this strange dimension and get out of your infinite loop.
@@ -113,7 +117,7 @@ print(f'''
     ''')
 # breaking this while loop means the game is over
 
-time.sleep(0)
+time.sleep(2)
 
 
 
@@ -159,16 +163,17 @@ while True:
             #tell them they can't get it
             print('Can\'t get ' + move[1] + '!')
     elif move[0] == 'look':
-        if move[1] == "map":
-            print(items['map']['description'])
-        elif move[1] == "paper":
-            print(items['paper']['description'])
-        elif move[1] == "sword":
-            print(items['sword']['description'])
-        elif move[1] == 'programming manual':
-            print(items['programming manual']['description'])
+        if move[1] in inventory:
+            print(items[move[1]]['description'])
+        #elif move[1] == "paper":
+            #print(items[move[1]]['description'])
+        #elif move[1] == "sword":
+            #print(items['sword']['description'])
+        #elif move[1] == 'programming manual':
+            #print(items['programming manual']['description'])
         time.sleep(5)
-        
+    elif move[0] == 'quit':
+        quitgame()    
     else:
             print('sorry')
         
