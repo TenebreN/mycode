@@ -29,19 +29,60 @@ def showStatus():
     # check if there's an item in the room, if so print it
     if "item" in rooms[currentRoom]:
         print('You see a ' + rooms[currentRoom]['item'])
+    if rooms[currentRoom] == rooms['Castle of Knowledge']:
+        if 'paper' and "programming manual" in inventory :
+            win()
     print("---------------------------")
+
+def winquit():
+    print ("Thank you for playing!  You have escaped ignorance!  Keep practicing!")
 
 def quitgame():
     print("thank you for playing! (quitter!)")
     exit()
 
 def win():
-    if [currentRoom] == 'Castle of Knowledge' :
-        key= input('You have made it to the Castle of Knowledge.  Here is your opportunity to escape the land of coding ignorance and return to reality\n what is key? \n')
+    print('''
+    
+    You have reached the castle.  
+    
+    a loud voice calls from above:
+    
+    "I am CHAD, your python instructor...  you lost the drinking game and now you are stuck here.  You have all of the tools you need. To get out, you must provide the key!
+    
+    Otherwise, you will rot here in ignorance.  You have three chances."
+
+    You have learned some valuable lessons during your time in this alternate reality.  Can you provide the key to python success??
+    
+    ''')
+    answer= input('What is the key to success?  Shout it out!\n>>')
+    while answer == 'practice':
+        print('no, you must SHOUT IT!')
+    if answer != "PRACTICE":
+        print('You have answered incorrectly.  You have XXX tries')
+
+    if answer == 'PRACTICE':
+        print('''
+
+        Chad's booming voice calls out:
+
+        "YES!  YOU HAVE ANSWERED CORRECTLY AND ESCAPED A LIFE OF IGNORANCE!  GO FORTH, AND PRACTICE!"
+
+        With that, you awaken in your own surroundings, an open python book in front of you.  Better get started!
+
+        You WIN!
+
+        ''')
+        winquit()
+
+
+    
 
 # an inventory, which is initially empty
 inventory = []
-
+commands = ['go' , 'get', 'look' , 'quit', 'exit'] 
+commands2= [inventory, 'north', 'south','east','west', 'up', 'down' , 'in' , 'out']
+none = None
 # a dictionary linking a room to other rooms
 rooms =  {
 
@@ -51,6 +92,11 @@ rooms =  {
                 'description' : 'You are standing in a dark, wooded forest. The air is cold, and though it is still, it seems to seep into your light clothing, and you shiver.  To the south you see a small clearing of trees, and to the north you see the ground start to rise.  East and west are blocked by trees.', 
 			    'item' : 'map',
                 },
+            'Castle of Knowledge' : {
+                'south' : 'foothills' , 
+                'description' : 'You are standing before a beautiful castle.  Somehow you know that this is your out of here.',
+            },
+
             'foothills' : {
                 'south' : 'dark woods',
                 'north' : 'Castle of Knowledge',
@@ -147,18 +193,25 @@ time.sleep(2)
 while True:
     showStatus()
     
+    
     # the player MUST type something in
     # otherwise input will keep asking
     move = ''
     while move == '':  
         move = input('>')
-
+    if move == 'quit' or move == 'exit':
+        quitgame()
     # normalizing input:
     # .lower() makes it lower case, .split() turns it to a list
     # therefore, "get golden key" becomes ["get", "golden key"]          
+    if ' ' not in move:
+        print('Please enter a two part command')
+        continue
     move = move.lower().split(" ", 1)
-
+    
     #if they type 'go' first
+    #if [currentRoom] == 'Castle of Knowledge' :
+       # key= input('You have made it to the Castle of Knowledge.  Here is your opportunity to escape the land of coding ignorance and return to reality\n what is key? \n')
     if move[0] == 'go':
         #check that they are allowed wherever they want to go
         if move[1] in rooms[currentRoom]:
@@ -170,6 +223,7 @@ while True:
             print('You can\'t go that way!')
 
     #if they type 'get' first
+        
     if move[0] == 'get' :
         # make two checks:
         # 1. if the current room contains an item
@@ -178,14 +232,14 @@ while True:
             #add the item to their inventory
             inventory.append(move[1])
             #display a helpful message
-            print(move[1] + ' got!')
+            print(move[1] + ' taken!')
             #delete the item key:value pair from the room's dictionary
             del rooms[currentRoom]['item']
         # if there's no item in the room or the item doesn't match
         else:
             #tell them they can't get it
             print('Can\'t get ' + move[1] + '!')
-    elif move[0] == 'look':
+    if move[0] == 'look':
         if move[1] in inventory:
             print(items[move[1]]['description'])
 
@@ -198,11 +252,18 @@ while True:
         #elif move[1] == 'programming manual':
             #print(items['programming manual']['description'])
         time.sleep(5)
-    elif move[0] == 'quit':
-        quitgame()    
-    else:
-            print('sorry, your command was misunderstood.  Please use either \'get (item)\', \'go (direction)\', or \'look (item)\' ')
-        
+    if currentRoom == rooms['Castle of Knowledge']:
+        win()
+    
+    elif move[0] not in commands:
+        #try:
+        print('sorry, your command was misunderstood.  Please use either \'get (item)\', \'go (direction)\', or \'look (item)\' ')
+        #except: 
+    #elif move[1] not in commands2:       #print('sorry')
+        print('sorry, your command was misunderstood.  Please use either \'get (item)\', \'go (direction)\', or \'look (item)\' ')   
+    elif move[1] =='':
+        print('commands must be two-part')       #continue
+win()
 
         
            
