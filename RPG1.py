@@ -3,6 +3,9 @@
 
 import time
 
+
+
+
 def showInstructions():
     """Show the game instructions when called"""
     #print a main menu and the commands
@@ -18,19 +21,23 @@ def showInstructions():
 
 def showStatus():
     """determine the current status of the player"""
-    # print the player's current location
+     # print the player's current location
     print('---------------------------')
     print(rooms[currentRoom]['description'])
     # print what the player is carrying
     print('Inventory:', inventory)
     # check if there's an item in the room, if so print it
     if "item" in rooms[currentRoom]:
-      print('You see a ' + rooms[currentRoom]['item'])
+        print('You see a ' + rooms[currentRoom]['item'])
     print("---------------------------")
 
 def quitgame():
     print("thank you for playing! (quitter!)")
     exit()
+
+def win():
+    if [currentRoom] == 'Castle of Knowledge' :
+        key= input('You have made it to the Castle of Knowledge.  Here is your opportunity to escape the land of coding ignorance and return to reality\n what is key? \n')
 
 # an inventory, which is initially empty
 inventory = []
@@ -40,9 +47,15 @@ rooms =  {
 
             'dark woods' : {
 			    'south' : 'small clearing' ,
-			    'description' : 'You are standing in a dark, wooded forest. The air is cold, and though it is still, it seems to seep into your light clothing, and you shiver.  To the south you see a small clearing of trees, and to the north you see the ground start to rise.  East and west are blocked by trees.', 
+			    'north' : 'foothills',
+                'description' : 'You are standing in a dark, wooded forest. The air is cold, and though it is still, it seems to seep into your light clothing, and you shiver.  To the south you see a small clearing of trees, and to the north you see the ground start to rise.  East and west are blocked by trees.', 
 			    'item' : 'map',
                 },
+            'foothills' : {
+                'south' : 'dark woods',
+                'north' : 'Castle of Knowledge',
+                'description' : 'you are in the foothills.  Your breathing becomes labored (and your hangover doesn\'t help) as you climb. To the [south] lies the dark woods, and to the [north] you see a majestic castle ',
+            },
 
             'small clearing' : {
                   'north' : 'dark woods' ,
@@ -73,14 +86,24 @@ rooms =  {
                 'out' : 'second floor',
                 'description' : 'you have entered the master bedroom.  The smell of decay immediately hits your nostrils.  As your eyes adjust to the dark, you are shocked to see a lifeless body on the center of the bed.  You see a nametag and title pinned to the corpse\'s body.  It reads "Smith - TLG Learning Student".  In the corpse\'s hand is a piece of [paper]' , 
 
-                'item' : 'paper'
+                'item' : 'paper',
             },
         }
 
 items = {
             
             'map' : {
-                'description' : 'this map is blank, like your mind when trying to remember commands',
+                'description' : 
+                '''
+                                            [ castle    ]
+                                                  |
+                [master]                    [ foothills ] 
+                    |                             |
+                [hall  ]                    [ dark woods]
+                    |                             |
+                [house ]  -  [courtyard] -  [small clear]
+                '''
+
                 },
 
             'sword' : {
@@ -165,6 +188,9 @@ while True:
     elif move[0] == 'look':
         if move[1] in inventory:
             print(items[move[1]]['description'])
+
+        elif move[1] not in inventory:
+            print(f'You dont have a {move[1]}')
         #elif move[1] == "paper":
             #print(items[move[1]]['description'])
         #elif move[1] == "sword":
@@ -175,7 +201,7 @@ while True:
     elif move[0] == 'quit':
         quitgame()    
     else:
-            print('sorry')
+            print('sorry, your command was misunderstood.  Please use either \'get (item)\', \'go (direction)\', or \'look (item)\' ')
         
 
         
