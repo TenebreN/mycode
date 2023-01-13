@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python4
 """Role Playing | VArmstrong"""
 
 import time
@@ -36,7 +36,7 @@ def showStatus():
 
 def winquit():
     print ("Thank you for playing!  You have escaped ignorance!  Keep practicing!")
-
+    exit()
 def quitgame():
     print("thank you for playing! (quitter!)")
     exit()
@@ -58,9 +58,11 @@ def win():
     answer= input('What is the key to success?  Shout it out!\n>>')
     while answer == 'practice':
         print('no, you must SHOUT IT!')
+        continue
     if answer != "PRACTICE":
         print('You have answered incorrectly.  You have XXX tries')
-
+        counter += 1
+        continue
     if answer == 'PRACTICE':
         print('''
 
@@ -83,6 +85,7 @@ inventory = []
 commands = ['go' , 'get', 'look' , 'quit', 'exit'] 
 commands2= [inventory, 'north', 'south','east','west', 'up', 'down' , 'in' , 'out']
 none = None
+counter = 1
 # a dictionary linking a room to other rooms
 rooms =  {
 
@@ -94,7 +97,8 @@ rooms =  {
                 },
             'Castle of Knowledge' : {
                 'south' : 'foothills' , 
-                'description' : 'You are standing before a beautiful castle.  Somehow you know that this is your out of here.',
+                'port2' : 'master bedroom',
+                'description' : 'You are standing before a beautiful castle.  Somehow you know that this is your out of here..',
             },
 
             'foothills' : {
@@ -130,6 +134,7 @@ rooms =  {
             },
             'master bedroom' : {
                 'out' : 'second floor',
+                'port1' : 'Castle of Knowledge',
                 'description' : 'you have entered the master bedroom.  The smell of decay immediately hits your nostrils.  As your eyes adjust to the dark, you are shocked to see a lifeless body on the center of the bed.  You see a nametag and title pinned to the corpse\'s body.  It reads "Smith - TLG Learning Student".  In the corpse\'s hand is a piece of [paper]' , 
 
                 'item' : 'paper',
